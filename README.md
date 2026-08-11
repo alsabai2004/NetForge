@@ -163,7 +163,7 @@ React Router| Application Routing
 ESLint| Code Quality
 
 ---
-
+```
 📂 Project Structure
 
 NetForge/
@@ -198,7 +198,7 @@ NetForge/
 ├── tsconfig.app.json
 ├── vite.config.ts
 └── README.md
-
+```
 ---
 
 ⚙️ Installation
