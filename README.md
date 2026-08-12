@@ -71,7 +71,7 @@ NetForge is also available as an Android application using an embedded WebView a
 The web application is bundled directly inside the APK, allowing the core toolkit to operate without an Internet connection.
 
 ### Android Architecture
-
+```
 text
 React + TypeScript
         │
