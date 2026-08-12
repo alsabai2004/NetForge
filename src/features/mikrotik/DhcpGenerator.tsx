@@ -375,8 +375,8 @@ function DhcpGenerator() {
         </button>
       </div>
 
-      <div className="grid gap-6 p-5 lg:grid-cols-2">
-        <div>
+      <div className="grid min-w-0 gap-6 p-5 lg:grid-cols-2">
+        <div className="min-w-0">
           <h3 className="text-sm font-semibold text-white">
             DHCP Pools
           </h3>
