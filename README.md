@@ -72,7 +72,7 @@ The web application is bundled directly inside the APK, allowing the core toolki
 
 ### Android Architecture
 
-```text
+text
 React + TypeScript
         │
         ▼
@@ -110,7 +110,6 @@ Offline local data
 
 ---
 ```
----
 📂 Project Structure
 NetForge/
 ├── src/
