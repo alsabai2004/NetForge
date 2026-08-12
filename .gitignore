@@ -1,24 +1,24 @@
-# Logs
-logs
+node_modules/
+dist/
+.env
+.env.*
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+android-app/.gradle/
+android-app/build/
+android-app/.cxx/
+android-app/local.properties
+android-app/keystore.properties
+android-app/*.keystore
+android-app/app/*.keystore
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+android-app-working/
+
+# Android / Build
+android-app/app/build/
+android-app/build/
+android-app-working/
+dist/
+*.keystore
+keystore.properties
+local.properties

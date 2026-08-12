@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import DashboardLayout from './layouts/DashboardLayout'
 import Dashboard from './features/dashboard'
 import IPCalculator from './features/calculator/IPCalculator'
+import NetworkCalculators from './features/calculator/NetworkCalculators'
 import CiscoTools from './features/cisco/CiscoTools'
 import MikroTikTools from './features/mikrotik/MikroTikTools'
 import CommandLibrary from './features/commands/CommandLibrary'
@@ -17,6 +18,8 @@ function App() {
           <Route path="/" element={<Dashboard />} />
 
           <Route path="/calculator" element={<IPCalculator />} />
+
+          <Route path="/network-calculators" element={<NetworkCalculators />} />
 
           <Route path="/cisco" element={<CiscoTools />} />
 

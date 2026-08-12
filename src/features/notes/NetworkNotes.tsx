@@ -3,16 +3,21 @@ import {
   BookOpen,
   Check,
   Clipboard,
+  Star,
   Search,
   Tag,
   X,
 } from 'lucide-react'
 import { noteData } from './noteData'
+import { getFavorites, saveFavorite } from '../../utils/storage'
 
 function NetworkNotes() {
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('All')
   const [copiedId, setCopiedId] = useState<string | null>(null)
+  const [favorites, setFavorites] = useState<string[]>(() =>
+    getFavorites(),
+  )
 
   const categories = useMemo(
     () => [
@@ -52,6 +57,18 @@ function NetworkNotes() {
   function resetFilters() {
     setSearch('')
     setCategory('All')
+  }
+
+  function toggleFavorite(noteId: string) {
+    const enabled = !favorites.includes(noteId)
+
+    saveFavorite(`note:${noteId}`, enabled)
+
+    setFavorites((current) =>
+      enabled
+        ? [...current, noteId]
+        : current.filter((id) => id !== noteId),
+    )
   }
 
   async function copyNote(noteId: string, content: string) {
@@ -206,29 +223,51 @@ function NetworkNotes() {
                   </p>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() =>
-                    copyNote(
-                      note.id,
-                      buildNoteText(note),
-                    )
-                  }
-                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-slate-700 px-3 py-2 text-xs font-medium text-slate-400 transition hover:border-cyan-500/40 hover:text-white"
-                  title={`Copy ${note.title}`}
-                >
-                  {copiedId === note.id ? (
-                    <>
-                      <Check size={14} />
-                      Copied
-                    </>
-                  ) : (
-                    <>
-                      <Clipboard size={14} />
-                      Copy Note
-                    </>
-                  )}
-                </button>
+                <div className="flex shrink-0 items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => toggleFavorite(note.id)}
+                    className="inline-flex items-center justify-center rounded-lg border border-slate-700 p-2 text-slate-500 transition hover:border-amber-500/40 hover:text-amber-400"
+                    title={
+                      favorites.includes(note.id)
+                        ? 'Remove from favorites'
+                        : 'Add to favorites'
+                    }
+                  >
+                    <Star
+                      size={15}
+                      fill={
+                        favorites.includes(note.id)
+                          ? 'currentColor'
+                          : 'none'
+                      }
+                    />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      copyNote(
+                        note.id,
+                        buildNoteText(note),
+                      )
+                    }
+                    className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-slate-700 px-3 py-2 text-xs font-medium text-slate-400 transition hover:border-cyan-500/40 hover:text-white"
+                    title={`Copy ${note.title}`}
+                  >
+                    {copiedId === note.id ? (
+                      <>
+                        <Check size={14} />
+                        Copied
+                      </>
+                    ) : (
+                      <>
+                        <Clipboard size={14} />
+                        Copy Note
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
 
               <div className="mt-5 grid gap-4 md:grid-cols-2">

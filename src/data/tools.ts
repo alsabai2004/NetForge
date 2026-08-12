@@ -24,6 +24,7 @@ export const tools = [
       'Analyze subnet ranges, usable hosts, broadcast addresses, and masks.',
     icon: GitBranch,
     category: 'IP Tools',
+    path: '/network-calculators',
   },
   {
     title: 'CIDR Calculator',
@@ -31,6 +32,7 @@ export const tools = [
       'Work with CIDR notation and determine network allocation details.',
     icon: Network,
     category: 'IP Tools',
+    path: '/network-calculators',
   },
   {
     title: 'Cisco Config Generator',

@@ -9,47 +9,35 @@ import {
   ShieldCheck,
   Terminal,
   Zap,
-  Layers3,
-  BookOpen,
 } from 'lucide-react'
 import ToolCard from '../components/ui/ToolCard'
 import { tools } from '../data/tools'
 
 function Dashboard() {
-  const categories = [...new Set(tools.map((tool) => tool.category))]
   const featuredTools = tools.slice(0, 6)
 
-  const categoryCount = (category: string) =>
-    tools.filter((tool) => tool.category === category).length
-
   return (
-    <div className="mx-auto w-full max-w-7xl space-y-8">
-
-      {/* Hero */}
-      <section className="relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-950 to-emerald-950/30 p-6 shadow-xl sm:p-8 lg:p-10">
-        <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl" />
-        <div className="absolute -bottom-32 left-1/3 h-64 w-64 rounded-full bg-cyan-500/5 blur-3xl" />
+    <div className="mx-auto w-full max-w-7xl">
+      <section className="relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-950 to-emerald-950/20 p-6 shadow-xl sm:p-8 lg:p-10">
+        <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-emerald-500/5 blur-3xl" />
 
         <div className="relative max-w-3xl">
-
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3 py-1.5 text-xs font-medium text-emerald-400">
             <Zap size={14} />
             Network Engineering Toolkit
           </div>
 
           <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Forge your network.
+            Build, analyze, and understand networks.
           </h1>
 
           <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">
-            NetForge is a practical workspace for network engineers,
-            students, and cybersecurity learners. Build configurations,
-            calculate networks, explore commands, and learn networking
-            concepts from one place.
+            NetForge brings practical network engineering tools,
+            configuration generators, command references, and networking
+            knowledge into one focused workspace.
           </p>
 
           <div className="mt-7 flex flex-wrap gap-3">
-
             <Link
               to="/calculator"
               className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-emerald-400"
@@ -66,63 +54,55 @@ function Dashboard() {
               <Terminal size={17} />
               Command Library
             </Link>
-
           </div>
         </div>
       </section>
 
-      {/* Statistics */}
-      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-
+      <section className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard
-          icon={<Layers3 size={20} />}
-          label="Total Tools"
-          value={String(tools.length)}
-          description="Available utilities"
-        />
-
-        <StatCard
-          icon={<Network size={20} />}
+          icon={<Calculator size={20} />}
           label="IP Tools"
-          value={String(categoryCount('IP Tools'))}
+          value="3"
           description="Addressing & subnetting"
         />
 
         <StatCard
           icon={<Router size={20} />}
-          label="Cisco"
-          value={String(categoryCount('Cisco'))}
+          label="Cisco Tools"
+          value="6+"
           description="Configuration utilities"
         />
 
         <StatCard
           icon={<Server size={20} />}
-          label="MikroTik"
-          value={String(categoryCount('MikroTik'))}
+          label="MikroTik Tools"
+          value="6+"
           description="RouterOS utilities"
         />
 
+        <StatCard
+          icon={<Command size={20} />}
+          label="References"
+          value="50+"
+          description="Commands & concepts"
+        />
       </section>
 
-      {/* Featured */}
-      <section>
-
+      <section className="mt-8">
         <div className="mb-4 flex items-end justify-between gap-4">
-
           <div>
             <h2 className="text-xl font-semibold text-white">
               Featured Tools
             </h2>
 
             <p className="mt-1 text-sm text-slate-500">
-              Start with the most useful networking utilities.
+              Frequently used networking utilities.
             </p>
           </div>
 
           <span className="hidden text-xs text-slate-500 sm:block">
-            {featuredTools.length} of {tools.length}
+            {featuredTools.length} tools
           </span>
-
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -137,39 +117,9 @@ function Dashboard() {
             />
           ))}
         </div>
-
       </section>
 
-      {/* Categories */}
-      <section>
-
-        <div className="mb-4">
-          <h2 className="text-xl font-semibold text-white">
-            Explore by Category
-          </h2>
-
-          <p className="mt-1 text-sm text-slate-500">
-            Explore the capabilities currently available in NetForge.
-          </p>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-
-          {categories.map((category) => (
-            <CategoryCard
-              key={category}
-              category={category}
-              count={categoryCount(category)}
-            />
-          ))}
-
-        </div>
-
-      </section>
-
-      {/* Quick Access */}
-      <section>
-
+      <section className="mt-8">
         <div className="mb-4">
           <h2 className="text-xl font-semibold text-white">
             Quick Access
@@ -181,7 +131,6 @@ function Dashboard() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">
-
           <QuickCard
             href="/cisco"
             icon={<Router size={21} />}
@@ -200,39 +149,14 @@ function Dashboard() {
             href="/security"
             icon={<ShieldCheck size={21} />}
             title="Security"
-            description="Explore networking and cybersecurity concepts."
+            description="Explore network security concepts and references."
           />
-
         </div>
-
       </section>
 
-      {/* Resources */}
-      <section className="grid gap-4 sm:grid-cols-2">
-
-        <ResourceCard
-          href="/commands"
-          icon={<Command size={20} />}
-          title="Command Library"
-          description="Cisco, MikroTik, Linux and networking commands."
-        />
-
-        <ResourceCard
-          href="/references"
-          icon={<BookOpen size={20} />}
-          title="Network References"
-          description="Protocols, ports and useful networking references."
-        />
-
-      </section>
-
-      {/* Status */}
-      <section className="rounded-xl border border-slate-800 bg-slate-900/40 p-5">
-
+      <section className="mt-8 rounded-xl border border-slate-800 bg-slate-900/40 p-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-
           <div className="flex items-center gap-3">
-
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
               <Network size={18} />
             </div>
@@ -243,21 +167,17 @@ function Dashboard() {
               </p>
 
               <p className="text-xs text-slate-500">
-                {tools.length} tools · {categories.length} categories
+                Network engineering workspace
               </p>
             </div>
-
           </div>
 
           <div className="inline-flex items-center gap-2 text-xs font-medium text-emerald-400">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+            <span className="h-2 w-2 rounded-full bg-emerald-400" />
             Operational
           </div>
-
         </div>
-
       </section>
-
     </div>
   )
 }
@@ -274,10 +194,8 @@ function StatCard({
   description: string
 }) {
   return (
-    <article className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 transition hover:border-slate-700">
-
+    <article className="rounded-xl border border-slate-800 bg-slate-900/60 p-5">
       <div className="flex items-center justify-between">
-
         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
           {icon}
         </div>
@@ -285,7 +203,6 @@ function StatCard({
         <span className="text-2xl font-bold text-white">
           {value}
         </span>
-
       </div>
 
       <h3 className="mt-4 text-sm font-semibold text-slate-200">
@@ -295,38 +212,7 @@ function StatCard({
       <p className="mt-1 text-xs text-slate-500">
         {description}
       </p>
-
     </article>
-  )
-}
-
-function CategoryCard({
-  category,
-  count,
-}: {
-  category: string
-  count: number
-}) {
-  return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5 transition hover:-translate-y-0.5 hover:border-emerald-500/30">
-
-      <div className="flex items-center justify-between">
-
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-800 text-emerald-400">
-          <Layers3 size={19} />
-        </div>
-
-        <span className="rounded-full bg-slate-800 px-2.5 py-1 text-xs text-slate-400">
-          {count} {count === 1 ? 'tool' : 'tools'}
-        </span>
-
-      </div>
-
-      <h3 className="mt-4 font-semibold text-white">
-        {category}
-      </h3>
-
-    </div>
   )
 }
 
@@ -346,9 +232,7 @@ function QuickCard({
       to={href}
       className="group rounded-xl border border-slate-800 bg-slate-900/60 p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-slate-900"
     >
-
       <div className="flex items-center justify-between">
-
         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
           {icon}
         </div>
@@ -357,7 +241,6 @@ function QuickCard({
           size={17}
           className="text-slate-600 transition group-hover:translate-x-1 group-hover:text-emerald-400"
         />
-
       </div>
 
       <h3 className="mt-5 text-base font-semibold text-white">
@@ -367,47 +250,6 @@ function QuickCard({
       <p className="mt-2 text-sm leading-6 text-slate-400">
         {description}
       </p>
-
-    </Link>
-  )
-}
-
-function ResourceCard({
-  href,
-  icon,
-  title,
-  description,
-}: {
-  href: string
-  icon: React.ReactNode
-  title: string
-  description: string
-}) {
-  return (
-    <Link
-      to={href}
-      className="group flex items-center gap-4 rounded-xl border border-slate-800 bg-slate-900/50 p-5 transition hover:border-emerald-500/30"
-    >
-
-      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
-        {icon}
-      </div>
-
-      <div className="min-w-0 flex-1">
-        <h3 className="font-semibold text-white">
-          {title}
-        </h3>
-
-        <p className="mt-1 text-sm text-slate-500">
-          {description}
-        </p>
-      </div>
-
-      <ArrowRight
-        size={17}
-        className="shrink-0 text-slate-600 transition group-hover:translate-x-1 group-hover:text-emerald-400"
-      />
-
     </Link>
   )
 }
