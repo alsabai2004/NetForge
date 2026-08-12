@@ -107,7 +107,7 @@ WebViewAssetLoader
 Local web asset loading
 LocalStorage
 Offline local data
-
+---
 ```
 📂 Project Structure
 NetForge/
@@ -134,6 +134,7 @@ NetForge/
 ├── package.json
 └── README.md
 ```
+---
 💻 Run Locally
 Clone the repository:
 git clone https://github.com/alsabai2004/NetForge.git
