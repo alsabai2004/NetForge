@@ -42,17 +42,19 @@ function DashboardLayout({ children }: DashboardLayoutProps) {
             {children}
           </main>
 
-          <footer className="border-t border-slate-800 bg-slate-950/80 px-4 py-4 text-center">
-            <p className="text-xs text-slate-500">
+          <footer className="border-t border-slate-800 bg-slate-900 px-4 py-6 text-center">
+            <div className="text-sm text-slate-400">
               NetForge
-              <span className="mx-2 text-slate-700">•</span>
-              Developed by{' '}
-              <span className="font-medium text-slate-300">
+              <span className="mx-2 text-slate-600">•</span>
+              Developed by
+              <span className="ml-1 font-semibold text-emerald-400">
                 Eng. Mohammed Najeeb Al-Sabai
               </span>
-              <span className="mx-2 text-slate-700">•</span>
-              © 2026
-            </p>
+            </div>
+
+            <div className="mt-1 text-xs text-slate-600">
+              Network Engineering Toolkit • © 2026
+            </div>
           </footer>
         </div>
       </div>
